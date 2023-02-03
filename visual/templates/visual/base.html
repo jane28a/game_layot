@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rauf und Runter</title>
+</head>
+<body>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <div id="game_info">
+        <span id="round">Round {{ round }}</span>
+        <span id="score">
+            <table id="score_table">
+                <tr>
+                    {% for player in players %}
+                        <th> {{ player.name }} </th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for player in players %}
+                        <td> {{ player.score }} </td>
+                    {% endfor %}
+                </tr>
+            </table>
+        </span>
+    </div>
+    <div id="game_view">
+            <div id="pile">
+                {% for card in pile %}
+                    <div class="pile_card">
+                        {% if card %}
+                            <img src="{% static card.image %}" class="card">
+                            <p class="pile_player"> {{ card.player }} </p>
+                        {% else %}
+                            <p class="empty">
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="player_info {{ players.0.status }}" id="left">
+                <img class="avatar" src="{% static players.0.avatar %}">
+                <p class="username">  {{ players.0.name }} </p>
+                <p class="tricks"> Tricks: {{ players.0.tricks }}</p>
+            </div>
+            <div class="player_info {{ players.1.status }}" id="top">
+                <img class="avatar" src="{% static players.1.avatar %}">
+                <p class="username">  {{ players.1.name }} </p>
+                <p class="tricks"> Tricks: {{ players.1.tricks }}</p>
+            </div>
+            <div class="player_info {{ players.2.status }}" id="right">
+                <img class="avatar" src="{% static players.2.avatar %}">
+                <p class="username">  {{ players.2.name }} </p>
+                <p class="tricks"> Tricks: {{ players.2.tricks }}</p>
+            </div>
+            <div id="hand">
+                {% for card in hand %}
+                    <img src="{% static card.image %}" class="card">
+                {% endfor %}
+            </div>
+            <div class="player_info {{ players.3.status }}" id="bottom">
+                <img class="avatar" src="{% static players.3.avatar %}">
+                <p class="username">  {{ players.3.name }} </p>
+                <p class="tricks"> Tricks: {{ players.3.tricks }}</p>
+            </div>
+    </div>
+</body>
+</html>
